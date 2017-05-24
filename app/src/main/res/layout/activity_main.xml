@@ -9,12 +9,24 @@
     android:orientation="vertical"
     tools:context="com.example.cxh.imageloadersample.MainActivity">
 
+
     <FrameLayout
-        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <FrameLayout
+            android:id="@+id/content"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/content1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

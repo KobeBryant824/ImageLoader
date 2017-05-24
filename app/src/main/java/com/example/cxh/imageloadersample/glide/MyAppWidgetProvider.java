@@ -16,7 +16,7 @@ import static com.example.cxh.imageloadersample.MainActivity.THUMBNAIL_PATH;
  * Desc:
  * Created by Hai (haigod7@gmail.com) on 2017/5/22 15:46.
  */
-public class FSAppWidgetProvider extends AppWidgetProvider {
+public class MyAppWidgetProvider extends AppWidgetProvider {
 
     private AppWidgetTarget appWidgetTarget;
 
@@ -37,7 +37,7 @@ public class FSAppWidgetProvider extends AppWidgetProvider {
     }
 
     public static void pushWidgetUpdate(Context context, RemoteViews rv) {
-        ComponentName myWidget = new ComponentName(context, FSAppWidgetProvider.class);
+        ComponentName myWidget = new ComponentName(context, MyAppWidgetProvider.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(myWidget, rv);
     }

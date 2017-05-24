@@ -8,6 +8,7 @@ import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
+import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.model.GlideUrl;
@@ -65,7 +66,7 @@ public class MyGlideModule implements GlideModule {
     private void setDiskCache(Context context, GlideBuilder builder) {
         File cacheDir = context.getExternalCacheDir();//指定数据的缓存地址，而且随应用卸载而删除数据
         // 1M = 1024KB  1KB = 1024B
-        int diskCacheSize = 1024 * 1024 * 30;//最多可以缓存多少字节的数据，相当于30M
+        int diskCacheSize = 1024 * 1024 * 100;//最多可以缓存多少字节的数据，100M
 
         //存放在SDCard/Android/data/data/<application package>/cache/, 这两句等同
         builder.setDiskCache(new DiskLruCacheFactory(cacheDir.getPath(), "glide", diskCacheSize));

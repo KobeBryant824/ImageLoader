@@ -25,7 +25,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.NotificationTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.example.cxh.imageloadersample.DensityUtils;
+import com.example.cxh.imageloadersample.util.DensityUtils;
 import com.example.cxh.imageloadersample.R;
 import com.socks.library.KLog;
 
@@ -71,24 +71,23 @@ public class GlideFragment extends Fragment {
     @BindView(R.id.gif_iv)
     ImageView mGifIv;
 
-    Unbinder unbinder;
-    private View mView;
+    private Unbinder unbinder;
     private Handler mHandler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_glide, container, false);
-        unbinder = ButterKnife.bind(this, mView);
-        return mView;
+        View view = inflater.inflate(R.layout.fragment_glide, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //默认 fitCenter,剪裁，既缩放图像让图像都测量出来等于或小于 ImageView 的边界范围。
-        //centerCrop，剪裁，即缩放图像让它填充到 ImageView 界限内并且裁剪额外的部分。
+        //默认 fitCenter，保持宽高比，缩小或者放大，使得图片完全显示在显示边界内，且宽或高契合显示边界。居中显示。
+        //centerCrop，保持宽高比缩小或放大，使得两边都大于或等于显示边界，且宽或高契合显示边界。居中显示。
         //两者共同点：该图像将会完全显示，但可能不会填满整个 ImageView,如果还是想完全充满控件还是得配合android:scaleType="centerCrop"
 
         DrawableRequestBuilder<String> thumbnailRequest = Glide.with(this).load(THUMBNAIL_PATH);
@@ -122,13 +121,13 @@ public class GlideFragment extends Fragment {
         BitmapImageViewTarget mBitmapImageViewTarget = new BitmapImageViewTarget(mTransformIv) {
             @Override
             protected void setResource(Bitmap resource) {
-                KLog.e(resource.getByteCount());
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
                 circularBitmapDrawable.setCircular(true);
                 mTransformIv.setImageDrawable(circularBitmapDrawable);
             }
         };
+
 
         Glide.with(this)
                 .load(SMALL_PATH)
@@ -164,6 +163,7 @@ public class GlideFragment extends Fragment {
         Glide.with(this)
                 .load(GIF_PATH)
                 .asGif()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE) // Source 及 None ,其他或者不添加策略会非常慢、卡
                 .error(R.drawable.ic_placeholder)
                 .into(mGifIv);
 
@@ -231,5 +231,8 @@ public class GlideFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        mHandler.removeCallbacksAndMessages(null);
+        KLog.e("onDestroyView");
     }
+
 }

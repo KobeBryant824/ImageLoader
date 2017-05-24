@@ -1,4 +1,4 @@
-package com.example.cxh.imageloadersample;
+package com.example.cxh.imageloadersample.util;
 
 import android.content.Context;
 import android.util.TypedValue;

@@ -1,4 +1,4 @@
-package com.example.cxh.imageloadersample.glide;
+package com.example.cxh.imageloadersample.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -189,6 +189,7 @@ public class GlideUtils {
         Glide.with(context)
                 .load(path)
                 .asGif()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE) // Source 及 None ,其他或者不添加策略会非常慢、卡
                 .centerCrop()
                 .into(imageView);
     }

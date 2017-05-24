@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fresco="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--attr 在drawee包的values.xml下，下面只是各个属性的使用，无规律-->
+        <!--Drawees 不支持 wrap_content 属性-->
+        <!--fresco:actualImageScaleType="fitXY"  // 实际图像的缩放类型-->
+        <!--fresco:fadeDuration="1000" // 淡入淡出的持续时间-->
+        <!--fresco:placeholderImage="@color/colorAccent" // 占位图-->
+        <!--fresco:retryImage="@drawable/retry" // 加载失败时，image pipeline 会重试四次；如果还是加载失败，则显示加载失败提示图片-->
+        <!--fresco:failureImage="@drawable/error" // 下载失败显示的图片-->
+        <!--fresco:progressBarImage  // 进度条图片-->
+        <!--fresco:progressBarAutoRotateInterval = "1000" // 旋转周期-->
+        <!--fresco:backgroundImage="@mipmap/ic_launcher"  // 背景图片首先被绘制-->
+        <!--fresco:overlayImage="@mipmap/ic_launcher" // 设置叠加图-->
+        <!--fresco:roundAsCircle = "true"  // 设置为圆形图-->
+        <!--圆形和圆角互斥-->
+        <!--fresco:roundedCornerRadius="15dp"  // 设置圆角半径-->
+        <!--fresco:roundTopLeft="true" // 配合roundedCornerRadius下，左上角是否为圆角-->
+        <!--fresco:roundWithOverlayColor = "@color/colorPrimary" // 圆角外面填充颜色-->
+        <!--fresco:roundingBorderWidth="10dp"  // 圆角表框宽度-->
+        <!--fresco:pressedStateOverlayImage="@color/pressed" // 按压-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/drawee_view0"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"/>
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/drawee_view00"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/drawee_view"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            fresco:actualImageScaleType="fitXY"
+            fresco:backgroundImage="@mipmap/ic_launcher"
+            fresco:fadeDuration="1000"
+            fresco:failureImage="@drawable/error"
+            fresco:placeholderImage="@color/colorAccent"
+            fresco:retryImage="@drawable/retry"/>
+
+        <!--显示固定宽高比，mDraweeView1.setAspectRatio(1.5f);-->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/drawee_view1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            fresco:progressBarAutoRotateInterval="1000"
+            fresco:progressBarImage="@drawable/progress"
+            fresco:roundBottomLeft="false"
+            fresco:roundBottomRight="true"
+            fresco:roundTopLeft="true"
+            fresco:roundTopRight="false"
+            fresco:roundWithOverlayColor="@color/colorPrimary"
+            fresco:roundedCornerRadius="50dp"
+            fresco:roundingBorderColor="@color/colorAccent"
+            fresco:roundingBorderWidth="5dp"
+            fresco:viewAspectRatio="1.5"/>
+
+        <!--自动加载actualImageResource-->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/drawee_view2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            fresco:actualImageUri="@string/big_path"
+            fresco:overlayImage="@mipmap/ic_launcher"
+            fresco:placeholderImage="@drawable/gank_meizi"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/drawee_view3"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/drawee_view4"
+            android:layout_width="200dp"
+            android:layout_height="300dp"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/drawee_view5"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            fresco:pressedStateOverlayImage="@color/pressed"/>
+    </LinearLayout>
+
+</ScrollView>
