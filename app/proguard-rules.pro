@@ -24,8 +24,17 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+# Glide
+-keepnames class com.example.cxh.imageloadersample.glide.MyGlideModule
+# or more generally:
+#-keep public class * implements com.bumptech.glide.module.GlideModule
+
+# for DexGuard only
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 
+
+# Fresco
 # Keep our interfaces so they can be used by other ProGuard rules.
 # See http://sourceforge.net/p/proguard/bugs/466/
 -keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
