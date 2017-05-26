@@ -13,10 +13,17 @@ import java.io.File;
  * Created by Hai (haigod7@gmail.com) on 2017/5/23 13:44.
  */
 public class MApplication extends Application {
+    private static MApplication mAppContext;
+
+    public static MApplication getContext() {
+        return mAppContext;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mAppContext = this;
+
         DiskCacheConfig mainDiskCacheConfig = DiskCacheConfig.newBuilder(this)
 //                .setBaseDirectoryPath(new File(Environment.getExternalStorageDirectory().getAbsoluteFile(), "fresco"))
                 .setBaseDirectoryPath(new File(getExternalCacheDir(), "fresco"))
